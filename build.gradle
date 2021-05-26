@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id "io.freefair.lombok" version '5.3.0'
     id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'maven'
 }
 
 group = 'top.srcrs'
@@ -38,7 +39,7 @@ List yaml = [
         'org.yaml:snakeyaml:latest.release'
 ]
 dependencies {
-    implementation logback,alibaba,apache,yaml
+    implementation logback, alibaba, apache, yaml
     testImplementation junit
 }
 
@@ -56,7 +57,22 @@ test {
     useJUnitPlatform()
 }
 
-task runMain (type: JavaExec) {
+task runMain(type: JavaExec) {
     main = 'top.srcrs.BiliStart'
     classpath = sourceSets.main.runtimeClasspath
+}
+
+task writeNewPom () {
+    pom {
+        project { //项目里的一些详细信息
+            inceptionYear '2017'
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    distribution 'this is a pom'
+                }
+            }
+        }
+    }.writeTo("pom.xml")
 }

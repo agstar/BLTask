@@ -24,15 +24,13 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Cache Gradle packages
+    - name: Cache local Maven repository
       uses: actions/cache@v2
       with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
-          ${{ runner.os }}-gradle-
+          ${{ runner.os }}-maven-
     - name: Build with Gradle
       env:
         BILI_JCT: ${{ secrets.BILI_JCT }}
@@ -45,4 +43,17 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{secrets.TELEGRAM_BOT_TOKEN}}
         TELEGRAM_CHAT_ID: ${{secrets.TELEGRAM_CHAT_ID}}
       run:
-        sh gradlew runMain
+        mvn assembly:assembly
+    - name: Run
+      env:
+        BILI_JCT: ${{ secrets.BILI_JCT }}
+        DEDEUSERID: ${{ secrets.DEDEUSERID }}
+        SESSDATA: ${{ secrets.SESSDATA }}
+        SCKEY: ${{ secrets.SCKEY }}
+        DINGTALK: ${{secrets.DINGTALK}}
+        PUSHPLUSTK: ${{secrets.PUSHPLUSTK}}
+        SENDKEY: ${{ secrets.SENDKEY }}
+        TELEGRAM_BOT_TOKEN: ${{secrets.TELEGRAM_BOT_TOKEN}}
+        TELEGRAM_CHAT_ID: ${{secrets.TELEGRAM_CHAT_ID}}
+      run:
+        java -jar target/BilibiliTask-1.0.9.jar
