@@ -6,13 +6,11 @@
   <artifactId>BilibiliTask</artifactId>
   <version>1.0.9</version>
   <inceptionYear>2017</inceptionYear>
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>this is a pom</distribution>
-    </license>
-  </licenses>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
   <dependencies>
     <dependency>
       <groupId>ch.qos.logback</groupId>
