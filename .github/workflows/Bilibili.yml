@@ -43,7 +43,7 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{secrets.TELEGRAM_BOT_TOKEN}}
         TELEGRAM_CHAT_ID: ${{secrets.TELEGRAM_CHAT_ID}}
       run:
-        mvn assembly:assembly
+        mvn assembly:assembly　-DskipTests=true
     - name: Run main method
       env:
         BILI_JCT: ${{ secrets.BILI_JCT }}
