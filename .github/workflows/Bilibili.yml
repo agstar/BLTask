@@ -31,7 +31,7 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - name: Build with Gradle
+    - name: Build with Maven
       env:
         BILI_JCT: ${{ secrets.BILI_JCT }}
         DEDEUSERID: ${{ secrets.DEDEUSERID }}
@@ -43,8 +43,8 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{secrets.TELEGRAM_BOT_TOKEN}}
         TELEGRAM_CHAT_ID: ${{secrets.TELEGRAM_CHAT_ID}}
       run:
-        mvn assembly:assembly
-    - name: Run
+        mvn assembly:assembly -Dtest.skip=true
+    - name: Run main method
       env:
         BILI_JCT: ${{ secrets.BILI_JCT }}
         DEDEUSERID: ${{ secrets.DEDEUSERID }}
