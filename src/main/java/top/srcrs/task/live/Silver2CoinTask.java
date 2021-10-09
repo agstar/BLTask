@@ -29,7 +29,7 @@ public class Silver2CoinTask implements Task {
                 if(silver < minSilver){
                     log.info("【银瓜子兑换硬币】: {}","银瓜子余额不足❌");
                 } else{
-                    log.info("【银瓜子兑换硬币】: {}",silver2coin().getString("msg") + "✔");
+                    log.info("【银瓜子兑换硬币】: {}",silver2coin().getString("message") + "✔");
                 }
             } catch (Exception e){
                 log.error("💔银瓜子兑换硬币错误 : ", e);
@@ -48,6 +48,7 @@ public class Silver2CoinTask implements Task {
     public JSONObject silver2coin(){
         JSONObject pJson = new JSONObject();
         pJson.put("csrf", userData.getBiliJct());
+        pJson.put("csrf_token", userData.getBiliJct());
         return Request.post("https://api.live.bilibili.com/pay/v1/Exchange/silver2coin", pJson);
     }
 
