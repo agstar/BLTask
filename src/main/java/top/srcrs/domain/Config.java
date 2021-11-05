@@ -4,35 +4,68 @@ import java.util.List;
 
 /**
  * 项目的配置类。
+ *
  * @author srcrs
  * @Time 2020-10-13
  */
 public class Config {
     private static final Config CONFIG = new Config();
 
-    public static Config getInstance(){
+    public static Config getInstance() {
         return CONFIG;
     }
-    private Config(){}
 
-    /** 代表所需要投币的数量 */
+    private Config() {
+    }
+
+    /**
+     * 代表所需要投币的数量
+     */
     private static Integer coin;
-    /** 送出即将过期的礼物 true 默认送出*/
+    /**
+     * 送出即将过期的礼物 true 默认送出
+     */
     private static boolean gift;
-    /** 要将银瓜子转换成硬币 true 默认转换*/
+    /**
+     * 要将银瓜子转换成硬币 true 默认转换
+     */
     private static boolean s2c;
-    /** 自动使用 B 币卷 */
+    /**
+     * 自动使用 B 币卷
+     */
     private static String autoBiCoin;
-    /** 用户设备的标识 */
+    /**
+     * 用户设备的标识
+     */
     private static String platform;
-    /** 投币给自定义的 up 主 */
+    /**
+     * 投币给自定义的 up 主
+     */
     private static List<String> upList;
-    /** 自动进行漫画签到任务 */
+    /**
+     * 自动进行漫画签到任务
+     */
     private static boolean manga;
-    /** 送出即将过期礼物给此 up 的直播间 */
+    /**
+     * 送出即将过期礼物给此 up 的直播间
+     */
     private static String upLive;
-    /** 对于进行投币的视频选择是否点赞 */
+    /**
+     * 对于进行投币的视频选择是否点赞
+     */
     private static String selectLike;
+    /**
+     * 直播间id
+     */
+    private static String roomId;
+
+    public String getRoomId() {
+        return roomId;
+    }
+
+    public void setRoomId(String roomId) {
+        Config.roomId = roomId;
+    }
 
     public String getSelectLike() {
         return selectLike;

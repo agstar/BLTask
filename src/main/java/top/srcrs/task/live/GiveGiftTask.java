@@ -28,9 +28,9 @@ public class GiveGiftTask implements Task {
                 return;
             }
             /* 直播间 id */
-            String roomId = "";
+            String roomId = config.getRoomId();
             /* 直播间 uid 即 up 的 id*/
-            String uid = "";
+            String uid = config.getUpLive();
             /* B站后台时间戳为10位 */
             long nowTime = System.currentTimeMillis()/1000;
             /* 获得礼物列表 */
@@ -117,6 +117,7 @@ public class GiveGiftTask implements Task {
     public String getRoomInfoOld(String mid) {
         JSONObject pJson = new JSONObject();
         pJson.put("mid", mid);
+        // fixme
         return Request.get("http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld", pJson)
                 .getJSONObject("data")
                 .getString("roomid");
