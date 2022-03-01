@@ -13,6 +13,7 @@ import top.srcrs.util.Request;
  * @author srcrs
  * @Time 2020-10-13
  */
+@Deprecated
 @Slf4j
 public class GiveGiftTask implements Task {
     /** 获取日志记录器对象 */
@@ -117,7 +118,7 @@ public class GiveGiftTask implements Task {
     public String getRoomInfoOld(String mid) {
         JSONObject pJson = new JSONObject();
         pJson.put("mid", mid);
-        // fixme
+        // FIXME
         return Request.get("http://api.live.bilibili.com/room/v1/Room/getRoomInfoOld", pJson)
                 .getJSONObject("data")
                 .getString("roomid");
